@@ -4,10 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Actions\Task\CreateNewTask;
 use App\Dtos\Task\CreateTaskDto;
+use App\Http\Resources\TaskResource;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     * @return TaskResource
+     */
+    public function index(Request $request)
+    {
+        return TaskResource::collection(Task::paginate($request->get('limit', 25)));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -17,8 +27,8 @@ class TaskController extends Controller
     {
         $dto = CreateTaskDto::create($request->all());
         
-        $task = CreateNewTask::create($dto);
+        $task = CreateNewTask::handle($dto);
 
-        return response()->json($task, 201);
+        return new TaskResource($task);
     }
 }

@@ -11,7 +11,7 @@ class CreateNewTask
      * Create a new task.
      * @param CreateTaskDto $dto
      */
-    public static function create(CreateTaskDto $dto): Task
+    public static function handle(CreateTaskDto $dto): Task
     {  
         return Task::create((array) $dto);
     }
