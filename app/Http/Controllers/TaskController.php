@@ -42,4 +42,14 @@ class TaskController extends Controller
 
         return new TaskResource($task);
     }
+
+    /**
+     * Delete the specified resource.
+     * @param Task $task
+     */
+    public function destroy(Task $task) {
+        $task->delete();
+
+        return response(null, 204);
+    }
 }
