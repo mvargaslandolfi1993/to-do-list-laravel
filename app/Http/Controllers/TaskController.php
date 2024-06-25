@@ -22,6 +22,15 @@ class TaskController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     * @param Task $task
+     */
+    public function show(Task $task)
+    {
+        return new TaskResource($task->load('category'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      * @param Request $request
      */
