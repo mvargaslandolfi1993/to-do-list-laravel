@@ -27,7 +27,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return new TaskResource($task->load(['category', 'comments']));
+        return new TaskResource($task->load(['category', 'comments', 'tags']));
     }
 
     /**
