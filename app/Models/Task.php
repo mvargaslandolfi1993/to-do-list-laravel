@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use App\Filters\Task\CategoryFilter;
+use App\Filters\Task\PriorityFilter;
+use App\Filters\Task\StatusFilter;
+use App\Models\Traits\Filterable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, Filterable;
 
     const PENDING_STATUS = 'Pending';
 
@@ -77,5 +81,18 @@ class Task extends Model
     public function reminders()
     {
         return $this->hasMany(Reminder::class);
+    }
+
+    /**
+     * Return the filters that should be use by default
+     * @return array
+     */
+    public function filters(): array
+    {
+        return  [
+            'priority' => PriorityFilter::class,
+            'status' => StatusFilter::class,
+            'category' => CategoryFilter::class,
+        ];
     }
 }

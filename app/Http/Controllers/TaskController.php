@@ -16,7 +16,9 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        return TaskResource::collection(Task::paginate($request->get('limit', 25)));
+        return TaskResource::collection(
+            Task::with('category')->filter($request->query())->paginate($request->get('limit', 25))
+        );
     }
 
     /**
@@ -26,7 +28,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $dto = CreateTaskDto::create($request->all());
-        
+
         $task = CreateNewTask::handle($dto);
 
         return new TaskResource($task);
