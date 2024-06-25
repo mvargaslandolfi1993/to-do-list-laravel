@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('task_tags', function (Blueprint $table) {
-            $table->uuid('task_id');
-            $table->uuid('tag_id');
+            $table->uuid('task_id')->references('id')->on('tasks');
+            $table->uuid('tag_id')->references('id')->on('tags');
         });
     }
 

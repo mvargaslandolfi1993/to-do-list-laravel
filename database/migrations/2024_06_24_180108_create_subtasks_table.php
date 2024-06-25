@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('subtasks', function (Blueprint $table) {
-            $table->uuid();
-            $table->uuid('task_id');
+            $table->uuid('id')->primary();
             $table->string('title');
             $table->text('status');
+            $table->uuid('task_id')->references('id')->on('tasks');
             $table->timestamps();
-
-            $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
 

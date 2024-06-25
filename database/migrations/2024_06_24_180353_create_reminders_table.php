@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reminders', function (Blueprint $table) {
-            $table->uuid();
-            $table->uuid('task_id');
+            $table->uuid('id')->primary();
+            $table->uuid('task_id')->references('id')->on('tasks');
             $table->dateTime('remind_at');
             $table->boolean('is_sent')->default(false);
             $table->timestamps();

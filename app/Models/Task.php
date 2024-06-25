@@ -2,15 +2,21 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Uidable;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    use HasFactory, Uidable;
+    use HasFactory, HasUuids;
 
-    protected $fillable = ['title', 'description', 'status', 'due_date'];
+    const PENDING_STATUS = 'Pending';
+
+    const IN_PROGRESS_STATUS = 'In Progress';
+
+    const COMPLETED_STATUS = 'Completed';
+
+    protected $fillable = ['title', 'description', 'status', 'due_date', 'priority', 'category_id', 'user_id'];
 
     /**
      * Get the category that the task belongs to.

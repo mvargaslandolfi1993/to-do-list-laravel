@@ -12,17 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid('id')->primary();
             $table->string('title');
             $table->text('description');
             $table->dateTime('due_date');
             $table->string('status');
-            $table->string('priority');
-            $table->uuid('category_id');
-            $table->uuid('user_id');
-
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->boolean('priority')->default(false);
+            $table->uuid('category_id')->references('id')->on('categories');
+            $table->uuid('user_id')->references('id')->on('users');
 
             $table->timestamps();
         });
