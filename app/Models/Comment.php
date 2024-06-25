@@ -10,7 +10,7 @@ class Comment extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = ['content'];
+    protected $fillable = ['content', 'user_id'];
 
     /**
      * Get the task that owns the comment.

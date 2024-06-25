@@ -17,7 +17,7 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         return TaskResource::collection(
-            Task::with('category')->filter($request->query())->paginate($request->get('limit', 25))
+            Task::with(['category', 'comments'])->filter($request->query())->paginate($request->get('limit', 25))
         );
     }
 
@@ -27,7 +27,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return new TaskResource($task->load('category'));
+        return new TaskResource($task->load(['category', 'comments']));
     }
 
     /**
