@@ -10,7 +10,11 @@ class Reminder extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = ['title', 'description', 'status', 'due_date'];
+    const PENDING_STATUS = 'Pending';
+
+    const COMPLETED_STATUS = 'Completed';
+    
+    protected $fillable = ['remind_at', 'is_sent', 'task_id'];
 
     /**
      * Get the task that owns the reminder.

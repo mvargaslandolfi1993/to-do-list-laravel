@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->text('content');
-            $table->uuid('task_id')->references('id')->on('tasks');
-            $table->uuid('user_id')->references('id')->on('users');
+            $table->foreignUuid('task_id')->references('id')->on('tasks');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

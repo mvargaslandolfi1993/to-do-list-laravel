@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->text('status');
-            $table->uuid('task_id')->references('id')->on('tasks');
+            $table->foreignUuid('task_id')->references('id')->on('tasks');
             $table->timestamps();
         });
     }

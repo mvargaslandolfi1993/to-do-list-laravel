@@ -18,8 +18,8 @@ return new class extends Migration
             $table->dateTime('due_date');
             $table->string('status');
             $table->boolean('priority')->default(false);
-            $table->uuid('category_id')->references('id')->on('categories');
-            $table->uuid('user_id')->references('id')->on('users');
+            $table->foreignUuid('category_id')->references('id')->on('categories');
+            $table->foreignId('user_id')->references('id')->on('users');
 
             $table->timestamps();
         });

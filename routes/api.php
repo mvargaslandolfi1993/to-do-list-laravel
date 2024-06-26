@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\SubtaskController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaskCommentController;
@@ -21,6 +22,10 @@ Route::apiResource('categories', CategoryController::class)->except(['show', 'up
 Route::apiResource('tags', TagController::class)->except(['show', 'update', 'destroy']);
 
 Route::apiResource('subtasks', SubtaskController::class)->except(['show', 'update']);
+
+Route::post('/reminder', [ReminderController::class, 'store'])->name('reminder.store');
+
+Route::delete('/reminder/{reminder}', [ReminderController::class, 'destroy'])->name('reminder.destroy');
 
 Route::post('/tasks/{task}/comment', TaskCommentController::class)->name('tasks.comment.store');
 

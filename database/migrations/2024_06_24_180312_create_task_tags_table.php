@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('task_tags', function (Blueprint $table) {
             $table->id()->primary();
-            $table->uuid('task_id')->references('id')->on('tasks');
-            $table->uuid('tag_id')->references('id')->on('tags');
+            $table->foreignUuid('task_id')->references('id')->on('tasks');
+            $table->foreignUuid('tag_id')->references('id')->on('tags');
             $table->unique(['task_id', 'tag_id']);
         });
     }

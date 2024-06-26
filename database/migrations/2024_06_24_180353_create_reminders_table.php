@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('reminders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('task_id')->references('id')->on('tasks');
-            $table->dateTime('remind_at');
+            $table->foreignUuid('task_id')->references('id')->on('tasks');
+            $table->dateTime('remind_at')->nullable();
             $table->boolean('is_sent')->default(false);
             $table->timestamps();
         });
