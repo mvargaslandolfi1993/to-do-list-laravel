@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('task_tags', function (Blueprint $table) {
             $table->id()->primary();
-            $table->foreignUuid('task_id')->references('id')->on('tasks');
-            $table->foreignUuid('tag_id')->references('id')->on('tags');
-            $table->unique(['task_id', 'tag_id']);
+            $table->foreignUuid('task_id')->references('id')->on('tasks')->cascadeOnDelete();
+            $table->foreignUuid('tag_id')->references('id')->on('tags')->cascadeOnDelete();
+            $table->unique(['task_id', 'tag_id'])->cascadeOnDelete();
+            $table->softDeletes();
         });
     }
 

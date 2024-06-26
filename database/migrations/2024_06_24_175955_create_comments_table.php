@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->text('content');
-            $table->foreignUuid('task_id')->references('id')->on('tasks');
+            $table->foreignUuid('task_id')->references('id')->on('tasks')->cascadeOnDelete();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

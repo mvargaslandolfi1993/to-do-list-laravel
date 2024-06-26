@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('reminders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('task_id')->references('id')->on('tasks');
+            $table->foreignUuid('task_id')->references('id')->on('tasks')->cascadeOnDelete();
             $table->dateTime('remind_at')->nullable();
             $table->boolean('is_sent')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
