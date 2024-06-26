@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubtaskController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaskCommentController;
 use Illuminate\Http\Request;
@@ -18,6 +19,8 @@ Route::apiResource('tasks', TaskController::class);
 Route::apiResource('categories', CategoryController::class)->except(['show', 'update', 'destroy']);
 
 Route::apiResource('tags', TagController::class)->except(['show', 'update', 'destroy']);
+
+Route::apiResource('subtasks', SubtaskController::class)->except(['show', 'update']);
 
 Route::post('/tasks/{task}/comment', TaskCommentController::class)->name('tasks.comment.store');
 

@@ -10,7 +10,13 @@ class Subtask extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = ['title', 'status'];
+    const PENDING_STATUS = 'Pending';
+
+    const IN_PROGRESS_STATUS = 'In Progress';
+
+    const COMPLETED_STATUS = 'Completed';
+    
+    protected $fillable = ['title', 'status', 'task_id'];
 
     /**
      * Get the task that owns the subtask.

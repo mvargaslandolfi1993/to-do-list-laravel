@@ -17,7 +17,7 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         return TaskResource::collection(
-            Task::with(['category', 'comments'])->filter($request->query())->paginate($request->get('limit', 25))
+            Task::with(['category', 'comments', 'subtasks'])->filter($request->query())->paginate($request->get('limit', 25))
         );
     }
 
@@ -27,7 +27,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return new TaskResource($task->load(['category', 'comments', 'tags']));
+        return new TaskResource($task->load(['category', 'comments', 'tags', 'subtasks']));
     }
 
     /**
@@ -47,7 +47,8 @@ class TaskController extends Controller
      * Delete the specified resource.
      * @param Task $task
      */
-    public function destroy(Task $task) {
+    public function destroy(Task $task)
+    {
         $task->delete();
 
         return response(null, 204);
