@@ -68,7 +68,7 @@ class CreateTaskDto
             'description' => 'required|string',
             'due_date' => 'required|date',
             'category_id' => 'required|string|exists:categories,id',
-            'user_id' => 'required|string|exists:users,id',
+            'user_id' => 'required|int|exists:users,id',
             'priority' => 'nullable|boolean',
         ]);
 
