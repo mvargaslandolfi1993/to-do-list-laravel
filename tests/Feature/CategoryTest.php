@@ -24,10 +24,12 @@ class CategoryTest extends TestCase
      */
     public function test_categories_create_route(): void
     {
-        $category_data = Category::factory()->make();
+        $category_data = Category::factory()->make()->toArray();
 
-        $response = $this->post(route('categories.store'), $category_data->toArray());
+        $response = $this->post(route('categories.store'), $category_data);
         $response->assertStatus(201);
+        $this->assertDatabaseHas('categories', $category_data);
+
     }
 
     /**
@@ -35,8 +37,8 @@ class CategoryTest extends TestCase
      */
     public function test_categories_creation_validation(): void
     {
-        $response = $this->post(route('categories.store'), []);
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors(['name']);
+        $response = $this->postJson(route('categories.store'), []);
+        $response->assertStatus(422)->assertJsonValidationErrors(['name']);
+
     }
 }
