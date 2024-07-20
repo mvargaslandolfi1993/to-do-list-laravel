@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Task\CreateNewTask;
+use App\Actions\Task\GetTasks;
 use App\Dtos\Task\CreateTaskDto;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
@@ -16,9 +17,7 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        return TaskResource::collection(
-            Task::with(['category', 'comments', 'subtasks'])->filter($request->query())->paginate($request->get('limit', 25))
-        );
+        return GetTasks::handle($request->query());
     }
 
     /**

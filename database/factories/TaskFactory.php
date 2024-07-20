@@ -25,7 +25,6 @@ class TaskFactory extends Factory
             'due_date' => $this->faker->dateTimeBetween('now', '+1 month'),
             'priority' => $this->faker->randomElement([0, 1]),
             'category_id' => Category::factory(),
-            'user_id' => User::factory(),
         ];
     }
 }

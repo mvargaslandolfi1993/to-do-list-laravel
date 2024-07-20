@@ -21,7 +21,7 @@ class TagFactory extends Factory
 
         return [
             'name' => $name,
-            'slug' => Str::of($name)->slug('-')
+            'slug' => $this->faker->unique()->slug(),
         ];
     }
 }
