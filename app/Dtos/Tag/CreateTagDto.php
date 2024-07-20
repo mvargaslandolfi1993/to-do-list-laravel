@@ -11,8 +11,8 @@ use Illuminate\Support\Str;
 
 class CreateTagDto
 {
-    public $name;
-    public $slug;
+    public string $name;
+    public string $slug;
 
     /**
      * Create a new DTO instance.

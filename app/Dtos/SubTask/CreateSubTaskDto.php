@@ -9,9 +9,9 @@ use Illuminate\Validation\ValidationException;
 
 class CreateSubTaskDto
 {
-    public $title;
-    public $status;
-    public $task_id;
+    public string $title;
+    public string $status;
+    public string $task_id;
 
     /**
      * Create a new DTO instance.

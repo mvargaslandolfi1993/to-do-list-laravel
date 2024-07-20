@@ -7,8 +7,8 @@ use Illuminate\Validation\ValidationException;
 
 class AddTaskCommentDto
 {
-    public $content;
-    public $user_id;
+    public string $content;
+    public string $user_id;
 
     /**
      * Create a new DTO instance.

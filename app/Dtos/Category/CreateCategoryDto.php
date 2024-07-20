@@ -11,8 +11,8 @@ use Illuminate\Support\Str;
 
 class CreateCategoryDto
 {
-    public $name;
-    public $slug;
+    public string $name;
+    public string $slug;
 
     /**
      * Create a new DTO instance.

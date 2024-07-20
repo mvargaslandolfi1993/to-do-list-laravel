@@ -7,8 +7,8 @@ use Illuminate\Validation\ValidationException;
 
 class CreateReminderDto
 {
-    public $task_id;
-    public $remind_at;
+    public string $task_id;
+    public string $remind_at;
     /**
      * Create a new DTO instance.
      * @param string $task_id
