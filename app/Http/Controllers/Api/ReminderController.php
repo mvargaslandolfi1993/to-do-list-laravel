@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Actions\Reminder\CreateReminder;
 use App\Dtos\Reminder\CreateReminderDto;

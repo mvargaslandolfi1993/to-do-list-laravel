@@ -4,15 +4,16 @@ namespace App\Actions\Task;
 
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
-use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class GetTasks
+
+class FindTask
 {
     /**
      * Retrieve all tasks.
      */
-    public static function handle(array $qs): Paginator
+    public static function handle(string $task_id): Task
     {
         return Task::with(
             [
@@ -22,8 +23,12 @@ class GetTasks
                 },
                 'subtasks' => function (HasMany $query) {
                     return $query->take(3)->orderby('created_at', 'desc');
-                }
+                },
+                'tags',
+                'reminders' => function (HasMany $query) {
+                    return $query->take(3)->orderby('remind_at', 'asc');
+                },
             ]
-        )->filter($qs)->orderBy('created_at', 'desc')->paginate($qs['limit'] ?? 25);
+        )->findOrFail($task_id);
     }
 }

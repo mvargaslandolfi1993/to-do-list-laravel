@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Actions\SubTask\CreateSubTask;
 use App\Dtos\SubTask\CreateSubTaskDto;

@@ -3,33 +3,46 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Task\CreateNewTask;
+use App\Actions\Task\FindTask;
 use App\Actions\Task\GetTasks;
 use App\Dtos\Task\CreateTaskDto;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return TaskResource
-     */
-    public function index(Request $request)
-    {
-        return GetTasks::handle($request->query());
-    }
+  public function index(Request $request)
+  {
+    $tasks = GetTasks::handle($request->query());
 
-    /**
-     * Display the specified resource.
-     * @param Task $task
-     */
-    public function show(Task $task)
-    {
-        return new TaskResource($task->load(['category', 'comments', 'tags', 'subtasks', 'reminders']));
-    }
+    return Inertia::render('Tasks/Index', [
+      'tasks' => $tasks
+    ]);
+  }
+  /**
+   * Display the specified resource.
+   * @param Task $task
+   */
+  public function show($task_id)
+  {
+    $task = FindTask::handle($task_id);
 
-    /**
+    return Inertia::render('Tasks/Show', [
+      'task' => $task
+    ]);
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create()
+  {
+    return Inertia::render('Tasks/Store');
+  }
+  /**
      * Store a newly created resource in storage.
      * @param Request $request
      */
@@ -37,19 +50,8 @@ class TaskController extends Controller
     {
         $dto = CreateTaskDto::create($request->all());
 
-        $task = CreateNewTask::handle($dto);
+        CreateNewTask::handle($dto);
 
-        return new TaskResource($task);
-    }
-
-    /**
-     * Delete the specified resource.
-     * @param Task $task
-     */
-    public function destroy(Task $task)
-    {
-        $task->delete();
-
-        return response(null, 204);
+        return to_route('tasks.index');
     }
 }
