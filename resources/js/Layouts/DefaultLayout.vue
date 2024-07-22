@@ -1,11 +1,16 @@
-<script setup>
-import { Link } from "@inertiajs/vue3";
+<script setup lang="ts">
+import TheMenu from "../Components/TheMenu.vue";
 </script>
 
 <template>
-    <main>
-        <article>
+    <div class="flex h-screen">
+        <div
+            class="fixed top-0 left-0 w-64 h-full p-4 border border-1 border-slate-300"
+        >
+            <TheMenu />
+        </div>
+        <div class="flex-1 ml-64 p-4 overflow-auto">
             <slot />
-        </article>
-    </main>
+        </div>
+    </div>
 </template>

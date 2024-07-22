@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import Layout from "../../Layouts/DefaultLayout.vue";
 import { computed } from "vue";
-import { defineProps } from "vue";
 
 const props = defineProps<{
     task: Record<string, any>;

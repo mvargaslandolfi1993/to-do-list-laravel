@@ -21,58 +21,32 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->count(1)->has(
             Task::factory()
-                ->count(100)
+                ->count(30)
                 ->state(function (array $attributes, User $user) {
                     return ['user_id' => $user->id];
                 })
                 ->hasAttached($tags)
                 ->has(
                     Comment::factory()
-                        ->count(100)
+                        ->count(5)
                         ->state(function (array $attributes, Task $task) {
                             return ['task_id' => $task->id, 'user_id' => $task->user_id];
                         })
                 )
                 ->has(
                     Subtask::factory()
-                        ->count(100)
+                        ->count(5)
                         ->state(function (array $attributes, Task $task) {
                             return ['task_id' => $task->id];
                         })
                 )
                 ->has(
                     Reminder::factory()
-                        ->count(100)
+                        ->count(5)
                         ->state(function (array $attributes, Task $task) {
                             return ['task_id' => $task->id];
                         })
                 )
         )->create();
-
-        // Task::factory()->count(100)->state(function (array $attributes, User $user) {
-        //     return ['user_id' => $user->id];
-        // })->hasAttached($tags)
-        //     ->has(
-        //         Comment::factory()
-        //             ->count(100)
-        //             ->state(function (array $attributes, Task $task) {
-        //                 return ['task_id' => $task->id, 'user_id' => $task->user_id];
-        //             })
-        //     )
-        //     ->has(
-        //         Subtask::factory()
-        //             ->count(100)
-        //             ->state(function (array $attributes, Task $task) {
-        //                 return ['task_id' => $task->id];
-        //             })
-        //     )
-        //     ->has(
-        //         Reminder::factory()
-        //             ->count(100)
-        //             ->state(function (array $attributes, Task $task) {
-        //                 return ['task_id' => $task->id];
-        //             })
-        //     )
-        //     ->create();
     }
 }
