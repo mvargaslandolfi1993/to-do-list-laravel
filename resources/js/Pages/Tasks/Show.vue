@@ -1,5 +1,5 @@
-<script lang="ts" setup>
-import Layout from "../../Layouts/DefaultLayout.vue";
+<script setup lang="ts">
+import DefaultLayout from "../../Layouts/DefaultLayout.vue";
 import { computed } from "vue";
 
 const props = defineProps<{
@@ -16,7 +16,7 @@ const priority = computed(() => {
 </script>
 
 <template>
-    <Layout>
+    <DefaultLayout>
         <div>
             <h1>Information about the task</h1>
             <p>Task name: {{ props.task.title }}</p>
@@ -62,5 +62,5 @@ const priority = computed(() => {
                 </li>
             </ul>
         </div>
-    </Layout>
+    </DefaultLayout>
 </template>

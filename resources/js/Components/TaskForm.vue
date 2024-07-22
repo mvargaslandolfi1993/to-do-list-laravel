@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { inject } from "vue";
 import { router } from "@inertiajs/vue3";
 
-const dialogRef = inject("dialogRef");
+const dialogRef: any = inject("dialogRef");
 
 const closeDialog = (e) => {
     dialogRef.value.close(e);
@@ -15,7 +15,7 @@ const props = defineProps<{
 
 const statuses = ref([
     { id: "Pending", name: "Pending" },
-    { id: "In Process", name: "In Progress" },
+    { id: "In Progress", name: "In Progress" },
     { id: "Completed", name: "Completed" },
 ]);
 
@@ -35,7 +35,7 @@ const categories = ref([
 ]);
 
 const submitForm = () => {
-    router.post("/tasks", form);
+    router.post("/tasks", { ...form });
 };
 </script>
 
@@ -84,6 +84,7 @@ const submitForm = () => {
                     </p>
                 </div>
             </div>
+
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                     <label

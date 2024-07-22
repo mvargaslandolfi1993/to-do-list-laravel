@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import laravel from "laravel-vite-plugin";
 import Components from "unplugin-vue-components/vite";
 import { PrimeVueResolver } from "@primevue/auto-import-resolver";
-import path from 'path';
+import path from "path";
 
 export default defineConfig({
     resolve: {
@@ -17,7 +17,7 @@ export default defineConfig({
             resolvers: [PrimeVueResolver()],
         }),
         laravel({
-            input: ["resources/css/app.css", "resources/js/app.js"],
+            input: ["resources/css/app.css", "resources/js/app.ts"],
             refresh: true,
         }),
     ],

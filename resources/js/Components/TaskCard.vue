@@ -33,16 +33,16 @@ const { formattedDate } = useDateFormat(props.task.due_date);
             <p
                 class="text-gray-700 font-semibold font-sans tracking-wide text-sm"
             >
-                {{ task.title }}
+                {{ props.task.title }}
             </p>
         </div>
         <div class="flex mt-1 justify-between items-center">
-            <span class="text-sm text-gray-600">{{ task.description }}</span>
+            <span class="text-sm text-gray-600">{{ props.task.description }}</span>
         </div>
 
         <div class="flex mt-4 justify-between items-center">
             <span class="text-sm text-gray-600">{{ formattedDate }}</span>
-            <Badge :value="task.category.name" severity="secondary"></Badge>
+            <Badge :value="props.task.category.name" severity="secondary"></Badge>
         </div>
         <div class="flex mt-2 justify-between items-center">
             <span class="text-sm align-middle">

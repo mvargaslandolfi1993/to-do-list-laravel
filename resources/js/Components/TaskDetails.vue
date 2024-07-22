@@ -11,11 +11,11 @@
 import { inject, ref, onMounted } from "vue";
 import TaskForm from "./TaskForm.vue";
 
-const dialogRef = inject("dialogRef");
+const dialogRef: any = inject("dialogRef");
 
 const isLoading = ref(true);
 
-const task = ref(null);
+const task = ref({});
 
 onMounted(() => {
     task.value = dialogRef.value.data.task;

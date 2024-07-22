@@ -9,7 +9,6 @@
                     v-model="taskGroup.tasks"
                     item-key="id"
                     :group="{ name: 'tasks' }"
-                    @start="drag = true"
                     @end="onTaskEndDrop($event, index)"
                     class="w-1/3 p-2 bg-gray-100 rounded"
                 >
@@ -35,9 +34,9 @@
     </DefaultLayout>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { cloneDeep } from "lodash-es";
-import { markRaw, reactive, defineAsyncComponent } from "vue";
+import { reactive, defineAsyncComponent } from "vue";
 import draggable from "vuedraggable";
 import DefaultLayout from "../../Layouts/DefaultLayout.vue";
 import TaskCard from "../../Components/TaskCard.vue";
@@ -45,10 +44,6 @@ import { useDialog } from "primevue/usedialog";
 
 const TaskDetails = defineAsyncComponent(
     () => import("../../Components/TaskDetails.vue")
-);
-
-const DialogFooter = defineAsyncComponent(
-    () => import("../../Components/DialogFooter.vue")
 );
 
 const dialog = useDialog();
